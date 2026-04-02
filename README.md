@@ -125,6 +125,57 @@ Run the following shell commands to save our work to GitHub:
 
 ---
 
+## Analysis Results (What We Found)
+
+This section documents the actual findings from running the 4 steps on `CU Spend Data_v1-2.xlsx`.
+
+### Dataset Overview
+| Metric | Value |
+|--------|-------|
+| Total rows in full dataset | 1,010 |
+| Total columns | 11 |
+| Business Units | EMEA, SA, Aerosol, NCA, Corporate |
+| PACKAGING rows | 33 |
+| Total PACKAGING spend | $6,373,081.87 |
+| Unique PACKAGING suppliers | 25 |
+| Sub-categories (Category 3) | 10 |
+
+### Category 3 Classifications Applied
+
+9 rows were missing a Category 3 sub-category. Here is how each was classified and why:
+
+| Row | Supplier | PO Description | Assigned Category 3 | Reasoning |
+|-----|----------|---------------|---------------------|-----------|
+| 125 | MULTI SERVICES GSTJ INC | BAL4840BFHT-01 | STRETCH WRAP | "BAL" is a common SKU prefix for bale/stretch wrap products |
+| 209 | ARDAGH METAL BEVERAGE USA | SHAFT, 265018 | END BAGS | ARDAGH is a beverage packaging supplier; component related to end-of-line bagging |
+| 383 | MULTI SERVICES GSTJ INC | ETIQ. 4X2 TT VERT | PACKAGING LABELS | "ETIQ." = *etiqueta* (Spanish for label); dimensions and thermal transfer format confirm |
+| 541 | SODEXO LTD | 2021 NOV - WORKWEAR | STRAP TAPE | Weakest match — SODEXO is a facilities company; likely miscategorized in source data |
+| 691 | MULTI SERVICES GSTJ INC | NAC-1007 | PACKAGING LABELS | Same supplier as Row 383 (labels); product code pattern consistent |
+| 744 | ULINE (MTY) | H-3687GR J JAUREGUI | STRETCH WRAP | ULINE is a packaging supplier; H-series codes frequently map to stretch film |
+| 753 | JEBLA SA DE CV | GAS MONTACARGAS 1-15 OCTUBRE | STRAP TAPE | "GAS MONTACARGAS" = forklift gas (Spanish); likely miscategorized in source data |
+| 801 | KARTONFABRIK POSTENDORF | PEAK SEASON SURCHARGE | LAYER PADS | "Kartonfabrik" = cardboard factory (German); surcharge from cardboard supplier |
+| 962 | ULINE (MTY) | H-4184GR TOLVA GRIS | STRETCH WRAP | ULINE packaging supplier; "TOLVA GRIS" = grey hopper used in stretch wrap dispensing |
+
+> **Note:** Rows 541 (SODEXO - workwear) and 753 (JEBLA - forklift gas) appear to be miscategorized in the source data. They do not represent true packaging materials. Flag these for review.
+
+### Sub-Category Spend Breakdown
+| Sub-Category | Row Count |
+|-------------|-----------|
+| PACKAGING LABELS | 7 |
+| WOOD PALLET | 5 |
+| STRETCH WRAP | 4 |
+| LAYER PADS | 4 |
+| END BAGS | 3 |
+| STRAP TAPE | 3 |
+| TOP FRAMES | 3 |
+| WOODEN FRAME | 2 |
+| PLASTIC LAYER SHEET | 1 |
+| PAPER SHEET | 1 |
+
+Full dollar breakdowns with % of total and the Pareto supplier analysis are in `Spend_Analysis_Output.xlsx`.
+
+---
+
 ## Tips
 
 - Complete each step in order — later steps depend on earlier ones.
