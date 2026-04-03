@@ -115,7 +115,7 @@ freeze_and_fit(ws2)
 # ════════════════════════════════════════════════════════════════════════════════
 ws3 = wb.create_sheet("Supplier Analysis")
 
-supplier_summary = pkg.groupby('AIC Supplier Name')['AIC Spend'].sum().sort_values(ascending=False).reset_index()
+supplier_summary = pkg.groupby('AIC Normalized Supplier')['AIC Spend'].sum().sort_values(ascending=False).reset_index()
 n_suppliers = len(supplier_summary)
 
 ws3.append(["SUPPLIER ANALYSIS"])
@@ -132,7 +132,7 @@ style_header_row(ws3, ws3.max_row, 3)
 
 for _, row in supplier_summary.head(5).iterrows():
     pct = row['AIC Spend'] / total_spend
-    ws3.append([row['AIC Supplier Name'], row['AIC Spend'], pct])
+    ws3.append([row['AIC Normalized Supplier'], row['AIC Spend'], pct])
     ws3.cell(row=ws3.max_row, column=2).number_format = CURRENCY_FMT
     ws3.cell(row=ws3.max_row, column=3).number_format = PERCENT_FMT
 
@@ -147,7 +147,7 @@ cumulative = 0
 for rank, (_, row) in enumerate(supplier_summary.iterrows(), 1):
     pct = row['AIC Spend'] / total_spend
     cumulative += pct
-    ws3.append([rank, row['AIC Supplier Name'], row['AIC Spend'], pct, cumulative])
+    ws3.append([rank, row['AIC Normalized Supplier'], row['AIC Spend'], pct, cumulative])
     r = ws3.max_row
     ws3.cell(row=r, column=3).number_format = CURRENCY_FMT
     ws3.cell(row=r, column=4).number_format = PERCENT_FMT
@@ -167,7 +167,7 @@ cumulative = 0
 for _, row in supplier_summary.iterrows():
     pct = row['AIC Spend'] / total_spend
     cumulative += pct
-    ws4.append([row['AIC Supplier Name'], row['AIC Spend'], cumulative])
+    ws4.append([row['AIC Normalized Supplier'], row['AIC Spend'], cumulative])
     r = ws4.max_row
     ws4.cell(row=r, column=2).number_format = CURRENCY_FMT
     ws4.cell(row=r, column=3).number_format = PERCENT_FMT
