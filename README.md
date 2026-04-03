@@ -174,6 +174,10 @@ This section documents the actual findings from running the 4 steps on `CU Spend
 
 Full dollar breakdowns with % of total and the Pareto supplier analysis are in `Spend_Analysis_Output.xlsx`.
 
+### A Note on Supplier Counts
+
+The script uses the **`AIC Normalized Supplier`** column (not `AIC Supplier Name`) for all supplier grouping and counting. The normalized column consolidates name variations (e.g., different spellings or whitespace) into a single supplier entry, giving a more accurate count. For the PACKAGING subset this makes no difference (25 unique suppliers either way), but it ensures correctness if the script is ever run against the full dataset.
+
 ---
 
 ## Tips
