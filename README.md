@@ -136,7 +136,7 @@ This section documents the actual findings from running the 4 steps on `CU Spend
 | Total columns | 11 |
 | Business Units | EMEA, SA, Aerosol, NCA, Corporate |
 | PACKAGING rows | 33 |
-| Total PACKAGING spend | $6,373,081.87 |
+| Total PACKAGING spend | $6,373,081.88 |
 | Unique PACKAGING suppliers | 25 |
 | Sub-categories (Category 3) | 10 |
 
